@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анна Светлова — психолог · Бережная терапия для тех, кто устал нести всё в одиночку</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F1EA;
+    --bg-soft:#ECE4D4;
+    --ink:#2D3A2E;
+    --ink-soft:#4A5548;
+    --accent:#C87D55;
+    --accent-deep:#A8633F;
+    --sage:#8A9A7B;
+    --line:rgba(45,58,46,.12);
+    --shadow:0 20px 60px -20px rgba(45,58,46,.18);
+    --shadow-soft:0 8px 30px -12px rgba(45,58,46,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Manrope',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+    font-weight:400;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:400;letter-spacing:-.02em;line-height:1.1;color:var(--ink)}
+  h1{font-size:clamp(2.4rem,5.5vw,4.6rem);font-variation-settings:"opsz" 144}
+  h2{font-size:clamp(2rem,4vw,3.4rem);font-variation-settings:"opsz" 100}
+  h3{font-size:clamp(1.3rem,2vw,1.7rem)}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+  .italic{font-style:italic;font-weight:300}
+  .accent{color:var(--accent)}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 0;
+    background:rgba(245,241,234,.75);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease-out, padding .3s ease-out;
+  }
+  nav.scrolled{border-bottom-color:var(--line);padding:14px 0}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+  .logo{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:500;letter-spacing:-.02px;display:flex;align-items:center;gap:10px}
+  .logo-dot{width:10px;height:10px;border-radius:50%;background:var(--accent);display:inline-block}
+  .nav-links{display:flex;gap:36px;align-items:center}
+  .nav-links a{font-size:.94rem;color:var(--ink-soft);position:relative;transition:color .2s ease-out}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--accent);transition:width .3s ease-out}
+  .nav-links a:hover::after{width:100%}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 26px;border-radius:999px;
+    background:var(--ink);color:var(--bg);
+    font-size:.94rem;font-weight:500;
+    border:none;cursor:pointer;
+    transition:transform .18s ease-out, background .2s ease-out, box-shadow .2s ease-out;
+    font-family:inherit;
+  }
+  .btn:hover{transform:translateY(-2px);background:var(--accent);box-shadow:var(--shadow-soft)}
+  .btn-outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--bg)}
+  .burger{display:none;background:none;border:none;cursor:pointer;width:32px;height:32px;position:relative}
+  .burger span{position:absolute;left:6px;right:6px;height:1.5px;background:var(--ink);transition:transform .3s ease-out, top .3s ease-out, opacity .2s ease-out}
+  .burger span:nth-child(1){top:10px}
+  .burger span:nth-child(2){top:16px}
+  .burger span:nth-child(3){top:22px}
+  .burger.open span:nth-child(1){top:16px;transform:rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){top:16px;transform:rotate(-45deg)}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:160px 0 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:28px;
+  }
+  .hero-eyebrow::before{content:"";width:36px;height:1px;background:var(--accent)}
+  .hero h1{margin-bottom:28px}
+  .hero h1 em{font-style:italic;font-weight:300;color:var(--accent)}
+  .hero-sub{font-size:1.15rem;color:var(--ink-soft);max-width:520px;margin-bottom:40px}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:48px}
+  .promo{
+    display:inline-flex;align-items:center;gap:14px;
+    padding:16px 22px;border-radius:20px;
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    max-width:520px;
+  }
+  .promo-badge{
+    flex-shrink:0;
+    width:44px;height:44px;border-radius:50%;
+    background:var(--accent);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-size:1.1rem;font-weight:500;
+  }
+  .promo-text{font-size:.92rem;line-height:1.45}
+  .promo-text b{color:var(--ink);font-weight:600}
+
+  .hero-photo-wrap{position:relative;aspect-ratio:4/5}
+  .hero-photo{
+    position:absolute;inset:0;
+    border-radius:260px 260px 36px 36px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 8s ease-out}
+  .hero-photo.in-view img{transform:scale(1)}
+  .hero-blob{
+    position:absolute;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle,var(--sage) 0%,transparent 70%);
+    opacity:.35;filter:blur(40px);
+    top:-40px;right:-40px;z-index:-1;
+    animation:float 18s ease-in-out infinite;
+  }
+  .hero-blob.two{
+    width:280px;height:280px;bottom:-60px;left:-80px;top:auto;right:auto;
+    background:radial-gradient(circle,var(--accent) 0%,transparent 70%);
+    animation-delay:-9s;
+  }
+  @keyframes float{
+    0%,100%{transform:translate(0,0) scale(1)}
+    50%{transform:translate(20px,-30px) scale(1.08)}
+  }
+  .hero-stats{
+    position:absolute;bottom:-30px;left:-30px;
+    background:var(--bg);padding:20px 26px;border-radius:20px;
+    box-shadow:var(--shadow);
+    display:flex;gap:28px;
+    border:1px solid var(--line);
+  }
+  .stat-num{font-family:'Fraunces',serif;font-size:1.8rem;color:var(--accent);line-height:1}
+  .stat-lbl{font-size:.78rem;color:var(--ink-soft);margin-top:4px}
+
+  /* ===== SECTION BASE ===== */
+  section{padding:120px 0;position:relative}
+  .section-head{max-width:720px;margin-bottom:72px}
+  .section-eyebrow{
+    font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:18px;display:flex;align-items:center;gap:12px;
+  }
+  .section-eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+  .section-head p{font-size:1.08rem;color:var(--ink-soft);margin-top:18px;max-width:580px}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--bg)}
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}
+  .about-photo{
+    position:relative;aspect-ratio:3/4;border-radius:24px;overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .about-photo img{width:100%;height:100%;object-fit:cover}
+  .about-photo::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 60%,rgba(45,58,46,.25));
+  }
+  .about-quote{
+    position:absolute;left:24px;right:24px;bottom:24px;
+    color:var(--bg);font-family:'Fraunces',serif;font-style:italic;
+    font-size:1.15rem;line-height:1.4;
+  }
+  .about h2{margin-bottom:28px}
+  .about h2 em{font-style:italic;font-weight:300;color:var(--accent)}
+  .about-text p{color:var(--ink-soft);margin-bottom:18px;font-size:1.02rem}
+  .about-list{margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+  .about-list li{
+    list-style:none;padding-left:22px;position:relative;
+    font-size:.96rem;color:var(--ink);
+  }
+  .about-list li::before{
+    content:"";position:absolute;left:0;top:10px;
+    width:8px;height:8px;border-radius:50%;background:var(--accent);
+  }
+
+  /* ===== SERVICES ===== */
+  .services{background:var(--bg-soft);position:relative}
+  .services::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;background:var(--line);
+  }
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:60px}
+  .service-card{
+    background:var(--bg);padding:36px 32px;border-radius:24px;
+    border:1px solid var(--line);
+    transition:transform .3s ease-out, box-shadow .3s ease-out, border-color .3s ease-out;
+    cursor:pointer;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .service-card::before{
+    content:"";position:absolute;top:0;left:0;width:0;height:2px;background:var(--accent);
+    transition:width .4s ease-out;
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+  .service-card:hover::before{width:100%}
+  .service-num{
+    font-family:'Fraunces',serif;font-style:italic;
+    font-size:.9rem;color:var(--accent);margin-bottom:20px;
+  }
+  .service-card h3{margin-bottom:14px}
+  .service-card p{color:var(--ink-soft);font-size:.96rem;margin-bottom:24px;flex-grow:1}
+  .service-meta{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:20px;border-top:1px solid var(--line);
+    font-size:.88rem;
+  }
+  .service-price{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--ink)}
+  .service-duration{color:var(--ink-soft)}
+  .service-arrow{
+    width:40px;height:40px;border-radius:50%;
+    background:var(--ink);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease-out, transform .2s ease-out;
+  }
+  .service-card:hover .service-arrow{background:var(--accent);transform:rotate(-45deg)}
+
+  /* ===== REVIEWS ===== */
+  .reviews{background:var(--bg)}
+  .reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .review-list{display:flex;flex-direction:column;gap:20px}
+  .review{
+    background:var(--bg-soft);padding:32px;border-radius:24px;
+    border:1px solid var(--line);
+    transition:transform .3s ease-out;
+  }
+  .review:hover{transform:translateY(-4px)}
+  .review-stars{color:var(--accent);margin-bottom:16px;letter-spacing:2px;font-size:.9rem}
+  .review-text{font-family:'Fraunces',serif;font-size:1.12rem;line-height:1.55;color:var(--ink);margin-bottom:22px;font-weight:400}
+  .review-author{display:flex;align-items:center;gap:14px}
+  .review-author img{width:48px;height:48px;border-radius:50%;object-fit:cover}
+  .review-name{font-weight:600;font-size:.95rem}
+  .review-role{font-size:.82rem;color:var(--ink-soft);margin-top:2px}
+
+  .results h3{margin-bottom:24px;font-size:1.6rem}
+  .result-item{
+    padding:24px 0;border-bottom:1px solid var(--line);
+    display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;
+  }
+  .result-item:last-child{border-bottom:none}
+  .result-label{
+    font-family:'Fraunces',serif;font-style:italic;
+    color:var(--accent);font-size:1rem;min-width:60px;
+  }
+  .result-text{color:var(--ink);font-size:.98rem;line-height:1.55}
+  .result-text b{color:var(--ink);font-weight:600}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--ink);color:var(--bg);
+    padding:80px 0 40px;
+  }
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:60px;margin-bottom:60px}
+  footer h4{font-family:'Fraunces',serif;font-size:1.8rem;margin-bottom:18px;font-weight:400}
+  footer p{color:rgba(245,241,234,.65);font-size:.95rem;line-height:1.6}
+  footer h5{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;font-weight:500;font-family:'Manrope',sans-serif}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+  footer ul a{color:rgba(245,241,234,.75);font-size:.95rem;transition:color .2s ease-out}
+  footer ul a:hover{color:var(--bg)}
+  .footer-bottom{
+    padding-top:30px;border-top:1px solid rgba(245,241,234,.12);
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:.85rem;color:rgba(245,241,234,.5);flex-wrap:wrap;gap:12px;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(45,58,46,.55);backdrop-filter:blur(8px);
+    display:none;align-items:center;justify-content:center;
+    padding:20px;opacity:0;transition:opacity .3s ease-out;
+  }
+  .modal-overlay.active{display:flex;opacity:1}
+  .modal{
+    background:var(--bg);border-radius:28px;
+    max-width:560px;width:100%;max-height:90vh;overflow-y:auto;
+    padding:40px;position:relative;
+    transform:translateY(20px) scale(.98);
+    transition:transform .4s cubic-bezier(.2,.8,.2,1);
+    box-shadow:var(--shadow);
+  }
+  .modal-overlay.active .modal{transform:translateY(0) scale(1)}
+  .modal-close{
+    position:absolute;top:20px;right:20px;
+    width:40px;height:40px;border-radius:50%;
+    background:var(--bg-soft);border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease-out, transform .2s ease-out;
+    font-size:1.2rem;color:var(--ink);
+  }
+  .modal-close:hover{background:var(--ink);color:var(--bg);transform:rotate(90deg)}
+  .modal h3{margin-bottom:8px;font-size:1.6rem}
+  .modal-sub{color:var(--ink-soft);font-size:.95rem;margin-bottom:28px}
+  .calendar{margin-bottom:24px}
+  .cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+  .cal-month{font-family:'Fraunces',serif;font-size:1.2rem}
+  .cal-nav{display:flex;gap:8px}
+  .cal-nav button{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    background:var(--bg);cursor:pointer;color:var(--ink);
+    transition:background .2s ease-out, border-color .2s ease-out;
+  }
+  .cal-nav button:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .cal-weekdays{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:8px}
+  .cal-weekdays div{text-align:center;font-size:.75rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.1em;padding:8px 0}
+  .cal-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+  .cal-day{
+    aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+    border-radius:12px;cursor:pointer;font-size:.92rem;
+    transition:background .18s ease-out, color .18s ease-out, transform .18s ease-out;
+    border:none;background:transparent;color:var(--ink);font-family:inherit;
+  }
+  .cal-day:hover:not(.disabled):not(.empty){background:var(--bg-soft)}
+  .cal-day.selected{background:var(--accent);color:var(--bg);font-weight:600}
+  .cal-day.today{border:1px solid var(--accent)}
+  .cal-day.disabled{color:var(--line);cursor:not-allowed}
+  .cal-day.empty{cursor:default}
+  .times-label{font-size:.88rem;color:var(--ink-soft);margin:20px 0 12px}
+  .times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:24px}
+  .time-slot{
+    padding:10px;border-radius:12px;border:1px solid var(--line);
+    background:var(--bg);cursor:pointer;font-size:.88rem;text-align:center;
+    transition:all .18s ease-out;font-family:inherit;color:var(--ink);
+  }
+  .time-slot:hover{border-color:var(--accent);color:var(--accent)}
+  .time-slot.selected{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .form-field{margin-bottom:14px}
+  .form-field label{display:block;font-size:.82rem;color:var(--ink-soft);margin-bottom:6px;letter-spacing:.04em}
+  .form-field input,.form-field textarea{
+    width:100%;padding:14px 16px;border-radius:14px;
+    border:1px solid var(--line);background:var(--bg-soft);
+    font-family:inherit;font-size:.95rem;color:var(--ink);
+    transition:border-color .2s ease-out, background .2s ease-out;
+  }
+  .form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--accent);background:var(--bg)}
+  .form-field textarea{resize:vertical;min-height:80px}
+  .submit-btn{width:100%;justify-content:center;margin-top:8px;padding:16px}
+  .success-msg{
+    text-align:center;padding:30px 10px;display:none;
+  }
+  .success-msg.show{display:block}
+  .success-icon{
+    width:64px;height:64px;border-radius:50%;
+    background:var(--sage);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 20px;font-size:1.8rem;
+  }
+
+  /* ===== REVEAL ===== */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease-out, transform .7s ease-out}
+  .reveal.in-view{opacity:1;transform:translateY(0)}
+  .reveal-delay-1{transition-delay:.1s}
+  .reveal-delay-2{transition-delay:.2s}
+  .reveal-delay-3{transition-delay:.3s}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:960px){
+    .hero-grid,.about-grid,.reviews-grid,.footer-grid{grid-template-columns:1fr;gap:50px}
+    .hero-photo-wrap{max-width:420px;margin:0 auto}
+    .services-grid{grid-template-columns:1fr}
+    .about-list{grid-template-columns:1fr}
+    .nav-links{
+      position:fixed;top:70px;left:20px;right:20px;
+      background:var(--bg);flex-direction:column;align-items:flex-start;
+      padding:28px;border-radius:20px;border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      transform:translateY(-10px);opacity:0;pointer-events:none;
+      transition:transform .3s ease-out, opacity .3s ease-out;
+    }
+    .nav-links.open{transform:translateY(0);opacity:1;pointer-events:auto}
+    .burger{display:block}
+    .hero-stats{left:0;bottom:-20px}
+    section{padding:80px 0}
+    .hero{padding:130px 0 80px}
+    .modal{padding:28px}
+    .times{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (max-width:520px){
+    .hero-cta{flex-direction:column;align-items:stretch}
+    .hero-cta .btn{justify-content:center}
+    .promo{flex-direction:column;text-align:center;gap:10px}
+    .hero-stats{gap:18px;padding:16px 20px}
+    .stat-num{font-size:1.4rem}
+    .times{grid-template-columns:repeat(2,1fr)}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo"><span class="logo-dot"></span>Анна Светлова</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">Обо мне</a>
+      <a href="#services">Услуги</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#footer">Контакты</a>
+      <button class="btn" onclick="openModal('Знакомство')">Записаться</button>
+    </div>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <div class="hero-eyebrow reveal">Психолог · КПТ-терапевт</div>
+      <h1 class="reveal reveal-delay-1">Пространство, <em class="italic">где вас слышат</em> — без оценок и лишних советов</h1>
+      <p class="hero-sub reveal reveal-delay-2">Бережная терапия для тех, кто устал нести всё в одиночку. Работаем с тревогой, выгоранием, сложными отношениями и поиском себя.</p>
+      <div class="hero-cta reveal reveal-delay-3">
+        <button class="btn" onclick="openModal('Первая встреча')">Записаться на встречу →</button>
+        <a href="#services" class="btn btn-outline">Посмотреть услуги</a>
+      </div>
+      <div class="promo reveal reveal-delay-3">
+        <div class="promo-badge">30'</div>
+        <div class="promo-text"><b>Первая встреча-знакомство — бесплатно.</b> Познакомимся, обсудим запрос и поймём, подхожу ли я вам. Без обязательств.</div>
+      </div>
+    </div>
+    <div class="hero-photo-wrap reveal reveal-delay-2">
+      <div class="hero-blob"></div>
+      <div class="hero-blob two"></div>
+      <div class="hero-photo">
+        <img src="https://raw.githubusercontent.com/zolotarev564/psychology/main/995295586421474029.jpg" alt="Психолог Анна Светлова">
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">12+</div><div class="stat-lbl">лет практики</div></div>
+        <div><div class="stat-num">800+</div><div class="stat-lbl">клиентов</div></div>
+        <div><div class="stat-num">4</div><div class="stat-lbl">направления</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-photo reveal">
+      <img src="https://raw.githubusercontent.com/zolotarev564/psychology/main/775322892143522520.jpg" alt="Анна Светлова">
+      <div class="about-quote">«Терапия — это не починка. Это возвращение себе права быть живой»</div>
+    </div>
+    <div class="about-text">
+      <div class="section-eyebrow reveal">Обо мне</div>
+      <h2 class="reveal reveal-delay-1">Анна Светлова — <em class="italic">психолог,</em> который идёт рядом, а не сверху</h2>
+      <p class="reveal reveal-delay-2">Я работаю в когнитивно-поведенческой и схема-терапии. Это значит — без эзотерики, без «просто успокойтесь» и без универсальных рецептов. Мы вместе разбираемся, что с вами происходит, почему это происходит и что конкретно с этим делать.</p>
+      <p class="reveal reveal-delay-2">За 12 лет практики я провела более 5 000 сессий с людьми в самых разных состояниях — от острой тревоги до тихого, хронического «вроде всё нормально, но радости нет».</p>
+      <ul class="about-list reveal reveal-delay-3">
+        <li>МГУ, факультет психологии</li>
+        <li>Сертификация по КПТ (Институт Бека)</li>
+        <li>Обучение схема-терапии (ISST)</li>
+        <li>Регулярная супервизия</li>
+        <li>Член Российского психологического общества</li>
+        <li>Работаю онлайн и очно (Москва)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow reveal">Услуги</div>
+      <h2 class="reveal reveal-delay-1">Формат, который <em class="italic">подходит именно вам</em></h2>
+      <p class="reveal reveal-delay-2">Нажмите на карточку — откроется календарь, и вы сможете выбрать удобное время для первой встречи.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal" onclick="openModal('Индивидуальная терапия')">
+        <div class="service-num">— 01</div>
+        <h3>Индивидуальная терапия</h3>
+        <p>Личная работа один на один. Разбираем ваш запрос — тревога, самооценка, отношения, жизненные кризисы. Темп и глубину задаёте вы.</p>
+        <div class="service-meta">
+          <div class="service-price">4 500 ₽</div>
+          <div class="service-duration">60 минут</div>
+          <div class="service-arrow">→</div>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1" onclick="openModal('Семейная терапия')">
+        <div class="service-num">— 02</div>
+        <h3>Семейная терапия</h3>
+        <p>Работа с парой или семьёй. Учимся слышать друг друга без обвинений, находим точки опоры там, где кажется, что их уже нет.</p>
+        <div class="service-meta">
+          <div class="service-price">7 000 ₽</div>
+          <div class="service-duration">90 минут</div>
+          <div class="service-arrow">→</div>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2" onclick="openModal('Работа с тревогой')">
+        <div class="service-num">— 03</div>
+        <h3>Работа с тревогой и паникой</h3>
+        <p>Короткий структурированный курс (8–12 сессий). Доказанные техники КПТ, которые возвращают контроль над телом и мыслями.</p>
+        <div class="service-meta">
+          <div class="service-price">4 500 ₽</div>
+          <div class="service-duration">60 минут</div>
+          <div class="service-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-eyebrow reveal">Отзывы и результаты</div>
+      <h2 class="reveal reveal-delay-1">Что меняется <em class="italic">от первой сессии до года терапии</em></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-list">
+        <div class="review reveal">
+          <div class="review-stars">★ ★ ★ ★ ★</div>
+          <p class="review-text">«Пришла с ощущением, что я сломана. Через три месяца поняла — я не сломана, я просто устала быть сильной за всех. Анна не даёт советов — она возвращает мне мою голову».</p>
+          <div class="review-author">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80" alt="">
+            <div><div class="review-name">Мария, 34 года</div><div class="review-role">тревожное расстройство</div></div>
+          </div>
+        </div>
+        <div class="review reveal reveal-delay-1">
+          <div class="review-stars">★ ★ ★ ★ ★</div>
+          <p class="review-text">«Мы с женой были в шаге от развода. После 4 месяцев семейной терапии впервые за годы смогли разговаривать без крика. Это не магия — это работа. И она того стоила».</p>
+          <div class="review-author">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80" alt="">
+            <div><div class="review-name">Дмитрий, 41 год</div><div class="review-role">семейная терапия</div></div>
+          </div>
+        </div>
+        <div class="review reveal reveal-delay-2">
+          <div class="review-stars">★ ★ ★ ★ ★</div>
+          <p class="review-text">«Панические атаки мучили два года. Пройдя курс из 10 сессий, я снова сажусь в метро и летаю в самолётах. Анна — очень точный специалист».</p>
+          <div class="review-author">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80" alt="">
+            <div><div class="review-name">Екатерина, 29 лет</div><div class="review-role">панические атаки</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="results">
+        <h3 class="reveal">Результаты от А до Я</h3>
+        <div class="result-item reveal reveal-delay-1">
+          <div class="result-label">А</div>
+          <div class="result-text"><b>Было:</b> просыпаетесь с тяжестью в груди, день расписан по минутам, а вечером — пустота.</div>
+        </div>
+        <div class="result-item reveal reveal-delay-1">
+          <div class="result-label">→</div>
+          <div class="result-text"><b>Стало:</b> вы различаете свои чувства, умеете отдыхать без видачи и снова чувствуете вкус жизни.</div>
+        </div>
+        <div class="result-item reveal reveal-delay-2">
+          <div class="result-label">А</div>
+          <div class="result-text"><b>Было:</b> конфликты в паре по кругу, обида, молчание днями.</div>
+        </div>
+        <div class="result-item reveal reveal-delay-2">
+          <div class="result-label">→</div>
+          <div class="result-text"><b>Стало:</b> разговоры без обвинений, понимание, что стоит за словами партнёра, общее будущее.</div>
+        </div>
+        <div class="result-item reveal reveal-delay-3">
+          <div class="result-label">А</div>
+          <div class="result-text"><b>Было:</b> страх осуждения, невозможность сказать «нет», жизнь по чужим сценариям.</div>
+        </div>
+        <div class="result-item reveal reveal-delay-3">
+          <div class="result-label">→</div>
+          <div class="result-text"><b>Стало:</b> внутренние опоры, ясные границы, решения, которые действительно ваши.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Начнём с разговора</h4>
+        <p>Первая встреча — 30 минут, бесплатно. На ней мы познакомимся, обсудим ваш запрос и поймём, готовы ли вы работать вместе.</p>
+        <br>
+        <button class="btn" style="background:var(--accent)" onclick="openModal('Первая встреча')">Записаться бесплатно →</button>
+      </div>
+      <div>
+        <h5>Контакты</h5>
+        <ul>
+          <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+          <li><a href="mailto:hello@svetlova-psy.ru">hello@svetlova-psy.ru</a></li>
+          <li><a href="#">Telegram</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Навигация</h5>
+        <ul>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#">Политика конфиденциальности</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Анна Светлова · Психологическая практика</div>
+      <div>Москва · онлайн по всему миру</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="Закрыть">×</button>
+    <div id="formView">
+      <h3 id="modalTitle">Онлайн-запись</h3>
+      <p class="modal-sub" id="modalSub">Выберите удобную дату и время — я подтвержу запись в течение дня.</p>
+      <div class="calendar">
+        <div class="cal-head">
+          <div class="cal-month" id="calMonth"></div>
+          <div class="cal-nav">
+            <button onclick="changeMonth(-1)" aria-label="Назад">‹</button>
+            <button onclick="changeMonth(1)" aria-label="Вперёд">›</button>
+          </div>
+        </div>
+        <div class="cal-weekdays">
+          <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+        </div>
+        <div class="cal-days" id="calDays"></div>
+      </div>
+      <div class="times-label" id="timesLabel" style="display:none">Свободное время на выбранный день:</div>
+      <div class="times" id="times"></div>
+      <form id="bookForm" onsubmit="submitForm(event)">
+        <div class="form-field">
+          <label>Ваше имя</label>
+          <input type="text" id="fName" required placeholder="Как к вам обращаться">
+        </div>
+        <div class="form-field">
+          <label>Телефон или Telegram</label>
+          <input type="text" id="fPhone" required placeholder="+7 ... или @username">
+        </div>
+        <div class="form-field">
+          <label>Коротко о запросе (необязательно)</label>
+          <textarea id="fNote" placeholder="Чтобы я подготовилась к встрече"></textarea>
+        </div>
+        <button type="submit" class="btn submit-btn">Отправить заявку →</button>
+      </form>
+    </div>
+    <div class="success-msg" id="successView">
+      <div class="success-icon">✓</div>
+      <h3>Заявка отправлена</h3>
+      <p class="modal-sub" style="margin-top:12px">Я свяжусь с вами в течение дня, чтобы подтвердить встречу. Если срочно — напишите в Telegram.</p>
+      <button class="btn" onclick="closeModal()" style="margin-top:20px">Хорошо</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // === NAV scroll + burger ===
+  const nav = document.getElementById('nav');
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  });
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open'); navLinks.classList.remove('open');
+  }));
+
+  // === Reveal on scroll ===
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal, .hero-photo').forEach(el => io.observe(el));
+
+  // === MODAL + CALENDAR ===
+  const modal = document.getElementById('modal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalSub = document.getElementById('modalSub');
+  let currentService = '';
+  let selectedDate = null;
+  let selectedTime = null;
+  let viewDate = new Date();
+  viewDate.setDate(1);
+
+  function openModal(service){
+    currentService = service;
+    modalTitle.textContent = 'Запись: ' + service;
+    modalSub.textContent = 'Выберите удобную дату и время — я подтвержу запись в течение дня.';
+    document.getElementById('formView').style.display = 'block';
+    document.getElementById('successView').classList.remove('show');
+    selectedDate = null; selectedTime = null;
+    document.getElementById('times').innerHTML = '';
+    document.getElementById('timesLabel').style.display = 'none';
+    document.getElementById('bookForm').reset();
+    viewDate = new Date(); viewDate.setDate(1);
+    renderCalendar();
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  const monthNames = ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
+  function renderCalendar(){
+    const y = viewDate.getFullYear(), m = viewDate.getMonth();
+    document.getElementById('calMonth').textContent = monthNames[m] + ' ' + y;
+    const firstDay = new Date(y, m, 1).getDay();
+    const offset = (firstDay === 0) ? 6 : firstDay - 1;
+    const daysInMonth = new Date(y, m+1, 0).getDate();
+    const today = new Date(); today.setHours(0,0,0,0);
+    const container = document.getElementById('calDays');
+    container.innerHTML = '';
+    for (let i = 0; i < offset; i++) {
+      const d = document.createElement('button');
+      d.className = 'cal-day empty'; d.type = 'button';
+      container.appendChild(d);
+    }
+    for (let day = 1; day <= daysInMonth; day++) {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.className = 'cal-day';
+      d.textContent = day;
+      const date = new Date(y, m, day);
+      const dow = date.getDay();
+      const isPast = date < today;
+      const isSunday = dow === 0;
+      if (isPast || isSunday) {
+        d.classList.add('disabled');
+      } else {
+        d.addEventListener('click', () => selectDate(date, d));
+      }
+      if (date.getTime() === today.getTime()) d.classList.add('today');
+      if (selectedDate && date.getTime() === selectedDate.getTime()) d.classList.add('selected');
+      container.appendChild(d);
+    }
+  }
+  function changeMonth(delta){
+    viewDate.setMonth(viewDate.getMonth() + delta);
+    renderCalendar();
+  }
+  function selectDate(date, el){
+    selectedDate = date; selectedTime = null;
+    document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+    el.classList.add('selected');
+    renderTimes();
+  }
+  function renderTimes(){
+    const slots = ['10:00','11:30','13:00','15:00','16:30','18:00','19:30'];
+    // псевдо-случайная доступность на основе даты
+    const seed = selectedDate.getDate();
+    const available = slots.filter((_, i) => (seed + i) % 3 !== 0);
+    const container = document.getElementById('times');
+    container.innerHTML = '';
+    available.forEach(t => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'time-slot';
+      b.textContent = t;
+      b.addEventListener('click', () => {
+        selectedTime = t;
+        document.querySelectorAll('.time-slot').forEach(x => x.classList.remove('selected'));
+        b.classList.add('selected');
+      });
+      container.appendChild(b);
+    });
+    document.getElementById('timesLabel').style.display = 'block';
+  }
+  function submitForm(e){
+    e.preventDefault();
+    if (!selectedDate || !selectedTime) {
+      alert('Пожалуйста, выберите дату и время');
+      return;
+    }
+    const data = {
+      service: currentService,
+      date: selectedDate.toLocaleDateString('ru-RU'),
+      time: selectedTime,
+      name: document.getElementById('fName').value,
+      contact: document.getElementById('fPhone').value,
+      note: document.getElementById('fNote').value,
+      created: new Date().toISOString()
+    };
+    // сохраняем в localStorage (для теста; на опубликованном сайте — в БД)
+    const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    bookings.push(data);
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+    document.getElementById('formView').style.display = 'none';
+    document.getElementById('successView').classList.add('show');
+  }
+
+  renderCalendar();
+</script>
+</body>
+</html>
